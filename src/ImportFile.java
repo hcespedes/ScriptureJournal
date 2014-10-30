@@ -94,8 +94,7 @@ public class ImportFile implements Runnable {
                 entry.setContent(content);
                 
                 // Gives a report of how many entries have been read
-                updater.update("Entries entered: " + countEntries++);
-                System.out.println("Entries entered: " + countEntries++);
+                updater.update("Entries entered: " + countEntries++);                
                 
                 List<String> newTopics = searchForTopic(blocks[i], termsMap);
                 for (String t: newTopics) {
@@ -114,8 +113,7 @@ public class ImportFile implements Runnable {
                 }
                 
                 // Gives a report of how many topics have been read
-                updater.update("Topics entered: " + countTopics);
-                System.out.println("Topics entered: " + countTopics);
+                updater.update("Topics entered: " + countTopics);               
                 
                 List<scripture> newScrip = searchForScrip(blocks[i], booksMap);
                 for (scripture s: newScrip) {
@@ -134,8 +132,7 @@ public class ImportFile implements Runnable {
                 }
                 
                 // Gives a report of how many scriptures have been read
-                updater.update("Scriptures entered: " + countScrip);
-                System.out.println("Scriptures entered: " + countScrip);                   
+                updater.update("Scriptures entered: " + countScrip);                                 
            }
         }catch (IOException ex) {//(FileNotFoundException ex) {
             ex.printStackTrace();
