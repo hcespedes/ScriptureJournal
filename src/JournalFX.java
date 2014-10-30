@@ -1,5 +1,6 @@
 /**************************************************************************
 * Author: Heidy Cespedes
+* Collaborators: Justin Whistine, and Adam Quinton
 * User Interface:
 *   Manage the different events depending on what options the user has 
 *   selected. 
@@ -72,13 +73,13 @@ public class JournalFX extends Application {
         final TextField dateField = new TextField(); // Enable only when "Add
                                                      // Entry" is clicked
         dateField.setDisable(true);
-        hbox1.getChildren().addAll(date, dateField);      ////////////////////
+        hbox1.getChildren().addAll(date, dateField);      
 
         final TextArea txtContent = new TextArea(); 
         txtContent.setPrefColumnCount(25);          
         txtContent.setPrefRowCount(15);  
         txtContent.setWrapText(true);
-        vbox2.getChildren().addAll(hbox1, info, txtContent);      //////////////////
+        vbox2.getChildren().addAll(hbox1, info, txtContent);      
                 
         
         Button openJournal = new Button();  
@@ -125,7 +126,7 @@ public class JournalFX extends Application {
  ***************************************************************************/         
         
         openJournal.setOnAction(new EventHandler<ActionEvent>() {
-           
+            
             @Override
             public void handle(ActionEvent event) {
                 
@@ -144,7 +145,17 @@ public class JournalFX extends Application {
                                 fileType = "txt";
                             }
                             
-                            
+                            ///////  Code to set up the thread  ////////
+                            // First set up our updater
+                            TextFieldUpdater updater = new TextFieldUpdater();
+                            updater.text = info;
+
+                            // Now set up our openFile                           
+                            ImportFile openFile = new ImportFile(updater, fileName, fileType);
+
+                            // Now start the thread to run the openFie;
+                            Thread t1 = new Thread(openFile);
+                            t1.start();
                             
                             info.setText("Done Opening Journal\n");
                         } else {
@@ -217,7 +228,7 @@ public class JournalFX extends Application {
                         
                         // Make sure the date follows the format yyyy-mm-dd
                         if (!dateField.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
-                            dateField.setText("Date must follow the format specified. No spaces\n");
+                            info.setText("Date must follow the format specified. No spaces\n");
                             dateField.clear();
                         } else {
                         try {
@@ -250,7 +261,7 @@ public class JournalFX extends Application {
                         }
                         fileType = "";
                         fileName = null;
-                        file = null;                                 
+                        file = null; 
                         }
                     } else {
                         info.setText("Date cannot be empty");

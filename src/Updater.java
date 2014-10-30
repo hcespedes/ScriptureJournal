@@ -8,5 +8,5 @@
  * @author HEIDY2016
  */
 public interface Updater {
-     public void update(int count);
+     public void update(String message);
 }

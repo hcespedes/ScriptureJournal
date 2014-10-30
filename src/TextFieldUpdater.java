@@ -2,11 +2,7 @@
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
  *
  * @author HEIDY2016
@@ -14,11 +10,11 @@ import javafx.scene.control.TextField;
 public class TextFieldUpdater implements Updater{
     public TextField text;
     
-    public void update(final int count) {
+    public void update(final String message) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                text.setText(Integer.toString(count));
+                text.setText(message);
             }
         });
 

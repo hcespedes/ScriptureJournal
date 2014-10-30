@@ -29,13 +29,10 @@ public class createInstances {
     public List<Entry> processFile(String file, Map<String,List<String>> topicsMap, Map<String,List<String>> scripMap) {
 
         List<Entry> entries = new ArrayList<>();
-        System.out.println("Opening file: " + file);
-        String date = null;
+
         String content = "";
         String[] blocks;
-        List<String> scriptures = new ArrayList<>();
-        List<String> topics = new ArrayList<>();
-        
+
         try {
             BufferedReader bi = new BufferedReader(new FileReader(file));
             String line;
